@@ -14,6 +14,8 @@ gem "bootstrap-sass"
 gem "faker"
 gem "factory_girl_rails"
 gem "cancancan"
+gem "bootstrap-datepicker-rails"
+gem "table_print"
 
 group :development, :test do
   gem "byebug"

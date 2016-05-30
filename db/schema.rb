@@ -16,17 +16,18 @@ ActiveRecord::Schema.define(version: 20160530064154) do
   create_table "eating_days", force: :cascade do |t|
     t.string   "date"
     t.float    "money"
+    t.integer  "meal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "user_dates", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "date_integer"
-    t.boolean  "eated"
-    t.float    "fee"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "eating_day_id"
+    t.boolean  "eated",         default: false
+    t.float    "fee",           default: 0.0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "users", force: :cascade do |t|

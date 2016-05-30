@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :user_dates
-  has_many :eating_days, through: :user_date
+  has_many :eating_days, through: :user_dates
 end

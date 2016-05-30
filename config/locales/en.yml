@@ -29,3 +29,10 @@ en:
   sign_up: "Sign up"
   user:
     update: "Update"
+  create: "Create"
+  datepicker:
+    time:
+      format: "dd/mm/yyyy"
+  flash:
+    create_eating_day_success: "Creating Eating Day success ^.^"
+    create_eating_day_failed: "Failed Created Eating Day"
