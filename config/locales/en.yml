@@ -24,3 +24,7 @@ en:
   app_name: "Thanh nien song ao"
   home: "Home"
   about: "About"
+  sign_in: "Sign in"
+  reset_password: "Forgot your password"
+  sign_up: "Sign up"
+  
