@@ -13,6 +13,7 @@ gem "devise"
 gem "bootstrap-sass"
 gem "faker"
 gem "factory_girl_rails"
+gem "cancancan"
 
 group :development, :test do
   gem "byebug"
