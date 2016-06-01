@@ -1,0 +1,17 @@
+.thead-fixed{
+ 	background-color: green;
+ 	text-align: center;
+}
+
+.td-time{
+	width: 20px !important;
+	text-align: center;
+}
+
+.td-eat-money{
+	width: 10px;
+}
+.meal-money{
+  text-align: right;
+  font-weight: bold;
+}
