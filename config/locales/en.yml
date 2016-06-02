@@ -40,4 +40,5 @@ en:
     update_eating_day_success: "Updated Eating Day Success =))"
     update_eating_day_failed: "Failed Updated Eating Day :(("
   feature: "Feature"
+  profile: "Profile"
   
