@@ -1,30 +1,27 @@
-<h1><%= t "New Eating Day" %></h1>
+<h1><%= t "Edit Eating Day" %></h1>
 <div class="col-md-6 col-md-offset-3">
   <%= form_for @eating_day do |f| %>
     <div class="form-group">
       <%= f.label :date %><br />
-      <%= f.text_field :date, class: "form-control datepicker", required: true %>
+      <%= f.text_field :date, class: "form-control datepicker", required: true, readonly: true %>
     </div>
     <div class="form-group">
       <%= f.label :money %><br />
-      <%= f.text_field :money, autocomplete: "off", class: "form-control" %>
+      <%= f.text_field :money, autocomplete: "off", class: "form-control", required: true %>
     </div>
     <div class="form-group">
       <%= f.label :meal %><br />
       <%= f.select :meal, options_for_select([["Trua", 1],["Toi", 2]]), {}, class: "form-control"%>
     </div>
-    <%= f.label :legend %>
-    <% User.all.each do |user| %>
-      <%= f.fields_for :user_dates, user.user_dates.build do |builder| %>
+    <%= f.label :legend %><br />
+    <%= f.fields_for :user_dates  do |builder| %>
         <div class="form-group">
           <%= builder.check_box :eated, {checked: false}, true, 0 %>
-          <%= user.name %>
-          <%= builder.hidden_field :user_id, value: user.id %>
+          <%= builder.object.user.name %>
         </div>  
-      <% end %>
     <% end %>
    <div class="actions">
-      <%= f.submit t("create"), class: "btn btn-default btn-primary" %>
+      <%= f.submit t("update"), class: "btn btn-default btn-primary" %>
       <%= link_to "Cancel", root_path, class: "btn btn-danger pull-right" %>
    </div>
   <% end %>
