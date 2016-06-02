@@ -1,4 +1,4 @@
-<h1>Listing Dinning Status</h1>
+<h1>Listing Meal Status</h1>
 
   <table class="table table-bordered">
     <thead>
@@ -60,17 +60,17 @@
   	  			<% if eating_day.meal == 2  %>
   	  				<td colspan="2" class="meal-money">0</td>
   	  				<td colspan="2" class="meal-money">
-  	  					<%= link_to "Update", "#", class: "btn btn-success" %>
+  	  					<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success" %>
   	  				</td>
   	  			<% else %>
   	  	  		<td colspan="2" class="meal-money">
-  	  	  			<%= link_to "Update", "#", class: "btn btn-success"  %>
+  	  	  			<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success"  %>
   	  	  		</td>
   	  	  		<td colspan="2" class="meal-money">0</td>
   	  	  	<% end %>
   	  	  <% else %>	
   	  	  	<td colspan="2" class="meal-money">
-  	  	  		<%= link_to "Update", "#", class: "btn btn-success" %>
+  	  	  		<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success" %>
   	  	  	</td>
   	  	  <% end %>
     		<% end %>

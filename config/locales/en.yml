@@ -30,9 +30,14 @@ en:
   user:
     update: "Update"
   create: "Create"
+  update: "Update"
   datepicker:
     time:
       format: "dd/mm/yyyy"
   flash:
-    create_eating_day_success: "Creating Eating Day success ^.^"
-    create_eating_day_failed: "Failed Created Eating Day"
+    create_eating_day_success: "Creating Eating Day Success ^.^"
+    create_eating_day_failed: "Failed Created Eating Day :(("
+    update_eating_day_success: "Updated Eating Day Success =))"
+    update_eating_day_failed: "Failed Updated Eating Day :(("
+  feature: "Feature"
+  
