@@ -7,7 +7,7 @@
     	</tr>
 
     	<tr class="thead-fixed">
-	      <% EatingDay.all.pluck(:date).uniq.each do |eating_day| %>
+	      <% EatingDay.all.order(:date).pluck(:date).uniq.each do |eating_day| %>
 	        <td colspan="4">
 	        	<%= eating_day %>
 	        </td>
@@ -23,9 +23,9 @@
 
 	    <tr>
 	    	<% for i in 1..EatingDay.all.pluck(:date).uniq.count %>
-		    	<td class="td-eat-money">Eated</td>
+		    	<td class="td-eat-money">Ate-Status</td>
 		    	<td class="td-eat-money">Money</td>
-		    	<td class="td-eat-money">Eated</td>
+		    	<td class="td-eat-money">Ate-Status</td>
 		    	<td class="td-eat-money">Money</td>
 		    <% end %>
 	    </tr>
@@ -33,26 +33,7 @@
     <tfoot>
     	<tr>
     		<strong><td>Meal Money</td></strong>
-    		<% EatingDay.all.each do |eating_day| %>
-  	  		<% @check_date = eating_day.date %>
-  	  		<% @count_date_meal = EatingDay.where(date: @check_date).count %>
-
-  	  		<% if @count_date_meal == 1 %>
-  	  			<% if eating_day.meal == 2  %>
-  	  				<td colspan="2" class="meal-money">0</td>
-  	  				<td colspan="2" class="meal-money"><%= eating_day.money.round(1) %></td>
-  	  			<% else %>
-  	  	  		<td colspan="2" class="meal-money"><%= eating_day.money.round(1) %></td>
-  	  	  		<td colspan="2" class="meal-money">0</td>
-  	  	  	<% end %>
-  	  	  <% else %>	
-  	  	  	<td colspan="2" class="meal-money"><%= eating_day.money.round(1) %></td>
-  	  	  <% end %>
-    		<% end %>
-    	</tr>
-    	<tr>
-    		<td>Action</td>
-    		<% EatingDay.all.each do |eating_day| %>
+    		<% EatingDay.all.order(date: :asc, meal: :asc).each do |eating_day| %>
   	  		<% @check_date = eating_day.date %>
   	  		<% @count_date_meal = EatingDay.where(date: @check_date).count %>
 
@@ -60,58 +41,90 @@
   	  			<% if eating_day.meal == 2  %>
   	  				<td colspan="2" class="meal-money">0</td>
   	  				<td colspan="2" class="meal-money">
-  	  					<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success" %>
+                <%= eating_day.money.round(0) %>
+              </td>
+  	  			<% else %>
+  	  	  		<td colspan="2" class="meal-money">
+                <%= eating_day.money.round(0) %>
+              </td>
+  	  	  		<td colspan="2" class="meal-money">0</td>
+  	  	  	<% end %>
+  	  	  <% else %>	
+  	  	  	<td colspan="2" class="meal-money">
+              <%= eating_day.money.round(0) %>
+            </td>
+  	  	  <% end %>
+    		<% end %>
+    	</tr>
+    	<tr>
+    		<td>Action</td>
+    		<% EatingDay.all.order(date: :asc, meal: :asc).each do |eating_day| %>
+  	  		<% @check_date = eating_day.date %>
+  	  		<% @count_date_meal = EatingDay.where(date: @check_date).count %>
+
+  	  		<% if @count_date_meal == 1 %>
+  	  			<% if eating_day.meal == 2  %>
+  	  				<td colspan="2" class="meal-money">0</td>
+  	  				<td colspan="2" class="meal-money">
+  	  					<%= link_to "Edit", edit_eating_day_path(eating_day), class: "col-md-12 btn btn-success" %>
   	  				</td>
   	  			<% else %>
   	  	  		<td colspan="2" class="meal-money">
-  	  	  			<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success"  %>
+  	  	  			<%= link_to "Edit", edit_eating_day_path(eating_day), class: "col-md-12 btn btn-success"  %>
   	  	  		</td>
   	  	  		<td colspan="2" class="meal-money">0</td>
   	  	  	<% end %>
   	  	  <% else %>	
   	  	  	<td colspan="2" class="meal-money">
-  	  	  		<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success" %>
+  	  	  		<%= link_to "Edit", edit_eating_day_path(eating_day), class: "col-md-12 btn btn-success" %>
   	  	  	</td>
   	  	  <% end %>
     		<% end %>
-
     	</tr>
     </tfoot>
     <tbody>
     	<% @users.each do |user| %>
     	  <tr>
     	  	<td><%= user.name %></td>
-    	  	<% user.user_dates.each_with_index do |user_date, index| %>
-    	  		<% @check_date = user_date.eating_day.date %>
+    	  	<% user.eating_days.order(date: :asc, meal: :asc).each do |eating_day| %>
+    	  		<% @check_date = eating_day.date %>
     	  		<% @count_date_meal = EatingDay.where(date: @check_date).count %>
 
+            <% @user_date = UserDate.where(user_id: user.id, eating_day_id: eating_day.id) %>
+
     	  		<% if @count_date_meal == 1 %>
-    	  			<% if user_date.eating_day.meal == 2  %>
+    	  			<% if eating_day.meal == 2  %>
     	  				<td>0</td>
     	  				<td>0</td>
-    	  				<% if user_date.eated? %>
-    	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
-    	  	  		<% else %>
-    	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
-    	  	  		<% end %>
-    	  				<td><%= user_date.fee.round(1) %></td>
+                <% @user_date.each do |user_date| %>
+      	  				<% if user_date.eated? %>
+      	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
+      	  	  		<% else %>
+      	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
+      	  	  		<% end %>
+      	  				<td><%= user_date.fee.round(0) %></td>
+                <% end %>
     	  			<% else %>
-    	  				<% if user_date.eated? %>
-    	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
-    	  	  		<% else %>
-    	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
-    	  	  		<% end %>
-    	  	  		<td><%= user_date.fee.round(1) %></td>
-    	  	  		<td>0</td>
-    	  	  		<td>0</td>
+                <% @user_date.each do |user_date| %>
+      	  				<% if user_date.eated? %>
+      	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
+      	  	  		<% else %>
+      	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
+      	  	  		<% end %>
+      	  	  		<td><%= user_date.fee.round(0) %></td>
+      	  	  		<td>0</td>
+      	  	  		<td>0</td>
+                <% end %>
     	  	  	<% end %>
     	  	  <% else %><!-- All lunch and dinner -->
-    	  	    <% if user_date.eated? %>
-  	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
-  	  	  		<% else %>
-  	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
-  	  	  		<% end %>
-    	  	  	<td><%= user_date.fee.round(1) %></td>
+              <% @user_date.each do |user_date| %>
+      	  	    <% if user_date.eated? %>
+    	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
+    	  	  		<% else %>
+    	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
+    	  	  		<% end %>
+      	  	  	<td><%= user_date.fee.round(0) %></td>
+              <% end %>
     	  	  <% end %>
     	  	<% end %>
     	  </tr>

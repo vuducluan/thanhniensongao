@@ -11,12 +11,13 @@
     </div>
     <div class="form-group">
       <%= f.label :meal %><br />
-      <%= f.select :meal, options_for_select([["Trua", 1],["Toi", 2]]), {}, class: "form-control"%>
+      <%= f.select :meal, options_for_select([["Trua", 1],["Toi", 2]], selected: f.object.meal),
+        {}, {class: "form-control"} %>
     </div>
     <%= f.label :legend %><br />
     <%= f.fields_for :user_dates  do |builder| %>
         <div class="form-group">
-          <%= builder.check_box :eated, {checked: false}, true, 0 %>
+          <%= builder.check_box :eated, {checked: true}, true, 0 %>
           <%= builder.object.user.name %>
         </div>  
     <% end %>
