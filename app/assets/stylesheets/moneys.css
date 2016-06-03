@@ -20,3 +20,25 @@
 .adding-money{
   background-color: #00C500;
 }
+
+.width-5{
+  width: 5%;
+}
+
+.width-15{
+  width: 15%;
+}
+
+.width-20{
+  width: 20%;
+}
+
+.table-money{
+  width: 700px;
+  float: left;
+}
+
+.table-total{
+  float: left;
+  margin-left: 100px;
+}

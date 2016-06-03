@@ -120,3 +120,92 @@
   </table>	
 
 <%= link_to "Create Day", new_eating_day_path, class: "col-md-4 col-md-offset-4 btn btn-primary" %>
+
+<br /><hr />
+
+<div class="table-money">
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td class="text-bold width-5">Index</td>
+      <td class="text-bold width-20">Legend</td>
+      <td class="text-bold width-15">Meal Money</td>
+      <td class="text-bold width-15">Other Money</td>
+      <td class="text-bold width-15">Total Money</td>
+      <td class="text-bold width-15">Contribute</td>
+      <td class="text-bold width-15">The End</td>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% contribute_all = 0 %>
+  <% Money.where(money_type: 1).each do |money_adding| %>
+    <% contribute_all += money_adding.fee %>
+  <% end %>
+
+  <% total_meal = 0 %>
+  <% EatingDay.all.each do |eating_day| %>
+    <% total_meal += eating_day.money %>
+  <% end %>
+
+  <% user_other = (contribute_all - total_meal) / 5 %>
+
+  <% User.all.each_with_index do |user, index| %>
+    <tr>
+      <td class="width-5"><%= index+1 %></td>
+      <td class="text-bold width-20"><%= user.name %></td>
+
+      <!-- meal -->
+
+      <% meal_money = 0 %>
+      <% user.user_dates.each do |user_date| %>
+        <% meal_money += user_date.fee %>
+      <% end %>
+      <td class="width-15"><%= meal_money.round(0) %></td>
+
+      <!-- other -->
+      <td class="width-15">
+        <%= user_other.round(0) %>
+      </td>
+
+      <!-- total money -->
+      <td class="width-15"><%= (meal_money + user_other).round(0) %></td>
+
+      <!-- contribute -->
+      <% contribute = 0 %>
+      <% user.moneys.where(money_type: 1).each do |money_adding| %>
+        <% contribute += money_adding.fee %>
+      <% end %>
+      <td class="width-15"><%= contribute.round(0) %></td>
+
+      <!-- the end _-->
+      <td class="text-bold width-15"><%= (contribute - meal_money - user_other).round(0) %>K</td>
+
+    </tr>
+  <% end %>
+  </tbody>
+    
+</table>
+</div>
+<div class="table-total">
+  <div class = "panel panel-primary">
+    <div class = "panel-heading">
+      <h3 class = "panel-title">Total Money in this month</h3>
+    </div>
+     
+    <div class = "panel-body">
+      <span class="text-bold">
+        Meal Money:&nbsp;
+        <%= total_meal.round(0) %>K
+      </span><br />
+      <span class="text-bold">
+        Other Money:&nbsp;
+        <%= (contribute_all - total_meal).round(0) %>K
+      </span><br />
+      <span class="text-bold">
+        Total:&nbsp;  
+        <%= contribute_all.round(0) %>K
+      </span>
+    </div>
+  </div>
+</div>
