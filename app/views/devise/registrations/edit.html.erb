@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
       <%= f.label :position %><br />
-      <%= f.text_field :position, autofocus: true, class: "form-control" %>
+      <%= f.select :position, options_for_select([["Top", 0],["Jungle", 1], ["Mid",2], ["Ad Carry",3], ["Support", 4]]), {}, class: "form-control"%>
     </div>
     <div class="form-group">
       <%= f.label :password %> <i><%= t "leave_blank" %></i><br />
@@ -28,7 +28,8 @@
       <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
     </div>
     <div class="actions">
-      <%= f.submit t("user.update"), class: "col-md-4 pull-right btn btn-primary" %>
+      <%= f.submit t("user.update"), class: "col-md-4 pull-left btn btn-primary" %>
+      <%= link_to t("user.cancel"), root_path, class: "col-md-4 pull-right btn btn-danger" %>
     </div>
   <% end %>
 </div>
