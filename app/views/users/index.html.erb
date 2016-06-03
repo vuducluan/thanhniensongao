@@ -23,9 +23,9 @@
 
 	    <tr>
 	    	<% for i in 1..EatingDay.all.pluck(:date).uniq.count %>
-		    	<td class="td-eat-money">Eated</td>
+		    	<td class="td-eat-money">Ate</td>
 		    	<td class="td-eat-money">Money</td>
-		    	<td class="td-eat-money">Eated</td>
+		    	<td class="td-eat-money">Ate</td>
 		    	<td class="td-eat-money">Money</td>
 		    <% end %>
 	    </tr>
@@ -40,13 +40,13 @@
   	  		<% if @count_date_meal == 1 %>
   	  			<% if eating_day.meal == 2  %>
   	  				<td colspan="2" class="meal-money">0</td>
-  	  				<td colspan="2" class="meal-money"><%= eating_day.money.round(1) %></td>
+  	  				<td colspan="2" class="meal-money"><%= eating_day.money.round(0) %></td>
   	  			<% else %>
-  	  	  		<td colspan="2" class="meal-money"><%= eating_day.money.round(1) %></td>
+  	  	  		<td colspan="2" class="meal-money"><%= eating_day.money.round(0) %></td>
   	  	  		<td colspan="2" class="meal-money">0</td>
   	  	  	<% end %>
   	  	  <% else %>	
-  	  	  	<td colspan="2" class="meal-money"><%= eating_day.money.round(1) %></td>
+  	  	  	<td colspan="2" class="meal-money"><%= eating_day.money.round(0) %></td>
   	  	  <% end %>
     		<% end %>
     	</tr>
@@ -60,17 +60,17 @@
   	  			<% if eating_day.meal == 2  %>
   	  				<td colspan="2" class="meal-money">0</td>
   	  				<td colspan="2" class="meal-money">
-  	  					<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success" %>
+  	  					<%= link_to "Edit", edit_eating_day_path(eating_day), class: "col-md-12 btn btn-success" %>
   	  				</td>
   	  			<% else %>
   	  	  		<td colspan="2" class="meal-money">
-  	  	  			<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success"  %>
+  	  	  			<%= link_to "Edit", edit_eating_day_path(eating_day), class: "col-md-12 btn btn-success"  %>
   	  	  		</td>
   	  	  		<td colspan="2" class="meal-money">0</td>
   	  	  	<% end %>
   	  	  <% else %>	
   	  	  	<td colspan="2" class="meal-money">
-  	  	  		<%= link_to "Edit", edit_eating_day_path(eating_day), class: "btn btn-success" %>
+  	  	  		<%= link_to "Edit", edit_eating_day_path(eating_day), class: "col-md-12 btn btn-success" %>
   	  	  	</td>
   	  	  <% end %>
     		<% end %>
@@ -94,14 +94,14 @@
     	  	  		<% else %>
     	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
     	  	  		<% end %>
-    	  				<td><%= user_date.fee.round(1) %></td>
+    	  				<td><%= user_date.fee.round(0) %></td>
     	  			<% else %>
     	  				<% if user_date.eated? %>
     	  	  			<td><%= image_tag("yes.png", size: "25x25") %></td>
     	  	  		<% else %>
     	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
     	  	  		<% end %>
-    	  	  		<td><%= user_date.fee.round(1) %></td>
+    	  	  		<td><%= user_date.fee.round(0) %></td>
     	  	  		<td>0</td>
     	  	  		<td>0</td>
     	  	  	<% end %>
@@ -111,7 +111,7 @@
   	  	  		<% else %>
   	  	  			<td><%= image_tag("delete1.png", size: "25x25") %></td>
   	  	  		<% end %>
-    	  	  	<td><%= user_date.fee.round(1) %></td>
+    	  	  	<td><%= user_date.fee.round(0) %></td>
     	  	  <% end %>
     	  	<% end %>
     	  </tr>
