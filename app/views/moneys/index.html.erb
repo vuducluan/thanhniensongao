@@ -1,0 +1,27 @@
+<h1><%= t "manager_money" %></h1>
+<table class="table table-stripped">
+  <thead>
+  	<tr>
+  	  <td class="money-index text-bold">Index</td>
+  	  <td class="money-user text-bold">Legend</td>
+  	  <td class="money-fee text-bold">Money</td>
+  	  <td class="money-date text-bold">Date</td>
+  	  <td class="money-note text-bold">Note</td>
+  	</tr>
+  </thead>
+  <tbody>
+    <% @moneys.each_with_index do |money, index| %>	
+      <tr class="<%= css_type money.money_type %>">
+      	<td class="money-index"><%= index + 1 %></td>
+      	<td class="money-user"><%= money.user.name %></td>
+      	<td class="money-fee"><%= money.fee.round(0) %>.VND</td>
+      	<td class="money-date"><%= money.created_at.strftime("%d/%m") %></td>
+      	<td class="money-note"><%= money.note %></td>
+      </tr>
+    <% end %>
+  </tbody>	
+</table>
+<hr />
+<div class="actions">
+  <%= link_to t("money.new"), new_money_path, class: "col-md-4 col-md-offset-4 btn btn-primary" %>
+</div>	

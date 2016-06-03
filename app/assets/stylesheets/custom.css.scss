@@ -38,7 +38,7 @@ h1 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: bold;
-  font-size: 3em;
+  font-size: 32px;
   text-transform: capitalize;
   text-shadow: -1px -1px 1px #aaa,
                0px 2px 1px rgba(0,0,0,0.5),
@@ -114,4 +114,11 @@ $navbar-inverse-border: #e7e7e7;
 .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #e7e7e7;
     color: #555;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+.no-padding{
+  padding: 0px !important;
 }

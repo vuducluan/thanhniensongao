@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :user_dates
   has_many :eating_days, through: :user_dates
+  has_many :moneys
 end

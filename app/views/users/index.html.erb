@@ -3,7 +3,7 @@
   <table class="table table-bordered">
     <thead>
     	<tr>
-    		<td rowspan="4">#</td>	
+    		<td rowspan="4" class="no-padding"><%= image_tag("songao.jpg", size: "140x120") %></td>
     	</tr>
 
     	<tr class="thead-fixed">
@@ -119,4 +119,4 @@
     </tbody>
   </table>	
 
-<%= link_to "Create Day", new_eating_day_path, class: "btn btn-primary" %>
+<%= link_to "Create Day", new_eating_day_path, class: "col-md-4 col-md-offset-4 btn btn-primary" %>

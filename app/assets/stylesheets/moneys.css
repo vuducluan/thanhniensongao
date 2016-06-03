@@ -1,0 +1,22 @@
+.money-index{
+  width: 10%;
+}
+
+.money-fee{
+  width: 15%
+}
+
+.money-user{
+  width: 20%;
+}
+.money-date{
+  width: 15%;
+}
+
+.money-note{
+  width: 40%;
+}
+
+.adding-money{
+  background-color: #00C500;
+}
