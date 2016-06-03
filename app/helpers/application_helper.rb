@@ -7,4 +7,12 @@ module ApplicationHelper
       page_title + " | " + base_title
     end
   end
+
+  def css_type money_type
+  	if money_type == 1
+  	  "adding-money"
+  	else
+  	  "using-money"
+  	end
+  end
 end
