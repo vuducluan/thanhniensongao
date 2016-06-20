@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 20160603032335) do
 
   create_table "eating_days", force: :cascade do |t|
     t.string   "date"
-    t.float    "money"
+    t.float    "money",      default: 0.0
     t.integer  "meal"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "money", force: :cascade do |t|
